@@ -1,7 +1,10 @@
-1. This is Node.js povio app
+This is Node.js povio app
+
 2. All routes has prefix `/api/v1`
 3. Download and install packages via npm
-4. Run app: `npm run dev`
+4. Copy `.env.example` into `.env` 
+5. Create DB
+6. Run app: `npm run dev`
 
 Login: 
  -  Type: `POST` 
