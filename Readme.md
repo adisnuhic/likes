@@ -4,7 +4,8 @@ This is Node.js povio app
 3. Download and install packages via npm
 4. Copy `.env.example` into `.env` 
 5. Create DB
-6. Run app: `npm run dev`
+6. Run `npm run migrate`
+7. Run app: `npm run dev`
 
 Login: 
  -  Type: `POST` 
@@ -36,3 +37,4 @@ Most liked user:
  -   Type: `GET`
  -   Route: `api/v1/user/most-liked`
 
+Note tests does not exists yet will add them once i have time.
