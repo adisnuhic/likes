@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import authService from '../services/authService'
+import authBusiness from '../business/authBusiness'
 import responseHelper from '../helpers/responseHelper'
 import { validationResult } from 'express-validator'
 import { validators as v } from '../helpers/validators'
@@ -20,7 +20,7 @@ export default () => {
         }
         
         try{
-            const userResult = await authService.registerUser({ user: req.body })
+            const userResult = await authBusiness.registerUser({ user: req.body })
             if (userResult){
                 return responseHelper.ok(res, CONSTANTS.registration.SUCCESSFULLY_REGISTERED)
             }
@@ -42,7 +42,7 @@ export default () => {
         }
         
         try{
-            const token = await authService.loginUser({ user: req.body })
+            const token = await authBusiness.loginUser({ user: req.body })
             if (token !== null){
                 return responseHelper.ok(res, { token:token, message:CONSTANTS.login.LOGIN_SUCCESS })
             }

@@ -1,9 +1,7 @@
 import { Router } from 'express'
-import authService from '../services/authService'
 import responseHelper from '../helpers/responseHelper'
 import auth from '../middlewares/authMiddleware'
-import likeService from '../services/likeService'
-
+import likeBusiness from '../business/likeBusiness'
 
 export default () => {
     const api = Router()
@@ -16,13 +14,13 @@ export default () => {
         const { id } = req.params
 
         try{
-            const alreadyLiked = await likeService.isLiked({user_id: id, follower_id: follower_id})
+            const alreadyLiked = await likeBusiness.isLiked({user_id: id, follower_id: follower_id})
 
             if(alreadyLiked != null){
                 return responseHelper.badRequestCustom(res, { status:400, message: "You alredy liked this user!" })
             }
            
-            await likeService.like({user_id: id, follower_id: follower_id})
+            await likeBusiness.like({user_id: id, follower_id: follower_id})
             
             return responseHelper.ok(res)
         }catch(err){
@@ -38,13 +36,13 @@ export default () => {
         const { id } = req.params
 
         try{
-            const alreadyLiked = await likeService.isLiked({user_id: id, follower_id: follower_id})
+            const alreadyLiked = await likeBusiness.isLiked({user_id: id, follower_id: follower_id})
 
             if(alreadyLiked == null){
                 return responseHelper.badRequestCustom(res, { status:400, message: "You didn't like that user!" })
             }
            
-            await likeService.unlike({like: alreadyLiked})
+            await likeBusiness.unlike({like: alreadyLiked})
             
             return responseHelper.ok(res)
         }catch(err){
@@ -59,7 +57,7 @@ export default () => {
     api.get("/most-liked", auth, async(req, res, next)=>{
         
         try{
-            const users = await likeService.mostLiked()
+            const users = await likeBusiness.mostLiked()
             return responseHelper.ok(res, users)
         }catch(err){
             next(err)

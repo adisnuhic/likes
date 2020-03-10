@@ -1,5 +1,5 @@
 import likeRepository from '../repositories/likeRepository'
-import { Like } from '../models'
+
 
 class LikeService{
 
@@ -13,10 +13,9 @@ class LikeService{
 
     /**
      * Like  Service
-     * @param user_id, follower_id
+     * @param newLike
      */
-    async like({ user_id, follower_id }){
-        const newLike = Like.build({'user_id':user_id, 'follower_id':follower_id})
+    async like({ newLike }){
         return await likeRepository.like({ newLike })
     }
 

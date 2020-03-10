@@ -1,6 +1,6 @@
 import userRepository from '../repositories/userRepository'
 import bcrypt from 'bcryptjs'
-import responseHelper from '../helpers/responseHelper'
+
 
 class UserService{
 
@@ -14,21 +14,19 @@ class UserService{
 
 
     /**
-     * Update User Password
+     * Update User 
      * @param user
      */
-    async updatePassword({ id, current_password, new_password }){
-        const user = await userRepository.getFullByID({ id })
-        const ok = await bcrypt.compare(current_password, user.password)
+    async updateUser({ user }){
+        return await userRepository.updateUser({ user })    
+    }
 
-        if(ok){
-            const hash = await bcrypt.hash(new_password, 10);
-            user.password = hash
-            return await userRepository.updateUser({ user })    
-        }
-
-        return null
-        
+    /**
+     *  Get full by ID service
+     * @param id
+     */
+    async getFullByID({ id }){
+        return await userRepository.getFullByID({ id })
     }
 
 }

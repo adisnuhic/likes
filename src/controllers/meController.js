@@ -1,6 +1,5 @@
 import { Router, response } from 'express'
-import authService from '../services/authService'
-import userService from '../services/userService'
+import userBusiness from '../business/userBusiness'
 import responseHelper from '../helpers/responseHelper'
 import auth from '../middlewares/authMiddleware'
 import { validators as v } from '../helpers/validators'
@@ -14,7 +13,7 @@ export default () => {
      */
     api.get("/", auth, async (req, res, next) => {
         try{
-            const user = await userService.getByID({id: req.user.id})
+            const user = await userBusiness.getByID({id: req.user.id})
             
             if(user != null){
                 return responseHelper.ok(res, user)
@@ -37,7 +36,7 @@ export default () => {
         const { current_password, new_password} = req.body
 
         try{
-           const updated = await userService.updatePassword({ id: req.user.id, current_password: current_password, new_password: new_password })
+           const updated = await userBusiness.updatePassword({ id: req.user.id, current_password: current_password, new_password: new_password })
            
            if(updated !== null){
                return responseHelper.ok(res)
