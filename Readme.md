@@ -37,4 +37,4 @@ Most liked user:
  -   Type: `GET`
  -   Route: `api/v1/user/most-liked`
 
-Note tests does not exists yet will add them once i have time.
+
