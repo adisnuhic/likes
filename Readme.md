@@ -1,4 +1,4 @@
-This is Node.js povio app
+This is Node.js small app for likes
 
 2. All routes has prefix `/api/v1`
 3. Download and install packages via npm

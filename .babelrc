@@ -1,6 +1,18 @@
 {
-    "presets": ["es2015"],
-    "plugins": [["inline-dotenv",{
-        "path": "./.env"
-      }]]
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+        [
+            "inline-dotenv",
+            {
+                "path": "./.env"
+            }
+        ]
+    ],
+    "env": {
+        "test": {
+          "plugins": ["@babel/plugin-transform-runtime"]
+        }
+      }
 }
